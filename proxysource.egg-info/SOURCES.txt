@@ -1,7 +1,0 @@
-setup.py
-proxysource/__init__.py
-proxysource.egg-info/PKG-INFO
-proxysource.egg-info/SOURCES.txt
-proxysource.egg-info/dependency_links.txt
-proxysource.egg-info/not-zip-safe
-proxysource.egg-info/top_level.txt
