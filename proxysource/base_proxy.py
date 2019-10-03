@@ -19,3 +19,6 @@ class base_proxy():
         verifying that the proxies are responsive.
         '''
         pass
+
+    def pageNotRetrieved(self):
+        print("Could not retrieve page due to network issue.")

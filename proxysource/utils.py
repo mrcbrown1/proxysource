@@ -1,4 +1,5 @@
 import re
+import ipaddress
 
 def getHostnameFromURL(url):
     components = re.split('\.|\/', url)
@@ -15,3 +16,19 @@ def getHostnameFromURL(url):
         raise Exception("Could not determine domain from URL.")
 
     return domain
+
+
+def removeForbiddenChars(string):
+    forbidden_chars = ['-']
+
+    for char in forbidden_chars:
+        string = string.replace(char, '')
+
+    return string
+
+def isIPAddress(ipAdress):
+    try:
+        ipaddress.ip_address(ipAdress)
+        return True
+    except:
+        return False

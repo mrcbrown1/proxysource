@@ -5,7 +5,7 @@ from proxysource import utils
 def obtain_proxysearch(url, *args, **kwargs):
 
     try:
-        domain = utils.getHostnameFromURL(url)
+        domain = utils.removeForbiddenChars(utils.getHostnameFromURL(url))
 
         module_name = domain
         class_name = domain
@@ -17,8 +17,8 @@ def obtain_proxysearch(url, *args, **kwargs):
         instance = proxy_class(url, *args, **kwargs)
         #instance = proxy_class(*args, **kwargs)
 
-    except:
-        raise Exception("Well we shit the bed!")
+    except (AttributeError, ImportError):
+        raise ImportError('{} cannot be handled by this tool.'.format(url))
 
     return instance
 
