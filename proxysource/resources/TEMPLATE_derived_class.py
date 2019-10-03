@@ -1,4 +1,5 @@
 from proxysource.base_proxy import base_proxy
+from proxysource import utils
 
 '''
 Template file, do not edit.

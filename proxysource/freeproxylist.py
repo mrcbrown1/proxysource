@@ -28,18 +28,35 @@ class freeproxylist(base_proxy):
                    proxy_info = row.xpath('.//td/text()')
                    # Ip, Port, Country Code, Country Name, Anon, Google, Https, Last Checked
 
-                   country_code = proxy_info[2]
                    anon = proxy_info[4]
+
+                   if anon == 'anonymous':
+                       anon = 2
+                   elif anon == 'elite proxy':
+                       anon = 3
+                   else:
+                       anon = 0
+
 
                    thisIP = {
                        'ip': proxy_info[0],
                        'port': proxy_info[1],
-                       'google': proxy_info[5],
-                       'https': proxy_info[6]
+                       'google': True if proxy_info[5] == 'yes' else False,
+                       'https': True if proxy_info[6] == 'yes' else False,
+                       'anon': anon,
+                       'country': proxy_info[2]
                    }
 
                    out[str(iter)] = thisIP
                    iter += 1
+
+               out = {
+                   'data_valid': True,
+                   'data': out
+               }
+
+               if not utils.checkReturnDataStructure(out):
+                   raise Exception("Incorrect packet structure found")
 
            except:
                out = "Error finding rows using xpath"

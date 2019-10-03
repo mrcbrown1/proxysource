@@ -21,6 +21,3 @@ def obtain_proxysearch(url, *args, **kwargs):
         raise ImportError('{} cannot be handled by this tool.'.format(url))
 
     return instance
-
-def inc(x):
-    return x+1

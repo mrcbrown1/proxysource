@@ -1,0 +1,20 @@
+This file describes the format in which proxy ip information should be stored by all modules.
+Downstream code should be written to assume that this is true, and any non conformance should be fixed in the module.
+
+The output shall be a dictionary with the following structure:
+
+data_out = {
+    'data_valid': [True|False] # The presence of this field indicates that the rest of the data is valid, and can be processed
+    'data': {} # This field is itself a dictionary of all the proxies being returned.
+}
+
+The data has sequentially enumerated keys ranging from 0 to n, where  n is the number of proxies returned. It has the following structure:
+
+data = {
+    'ip': [str] # This is the string representation of the ip address, e.g. 123.5.71.89
+    'port': [str] # This is the port to use when connecting to the proxy
+    'https': [True|False] # This indicates whether the proxy is suitable for https pages (unknown = False)
+    'google': [True|False] # This indicates whether the proxy goes through Google (I think)
+    'anon': [0|1|2|3] # Indicates the anonymity of the proxy, 0 = unknown, 1 = transparent, 2 = anonymous, 3 = elite
+    'country': [AB] # Two letter country code to identify the exit country. (Unknown = XX)
+}
